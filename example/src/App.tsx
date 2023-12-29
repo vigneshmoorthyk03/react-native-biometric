@@ -1,34 +1,14 @@
-# react-native-biometric
+import * as React from 'react';
 
-react native biometric
-
-## Installation
-
-```sh
-npm install react-native-biometric
-```
-
-or
-
-```sh
-yarn add react-native-biometric
-```
-
-## Usage
-
-Android:
-    <uses-permission android:name="android.permission.USE_BIOMETRIC"/>
-IOS:
-  <key>NSFaceIDUsageDescription</key>
-  <string>We use Face ID to secure your account.</string>
-
-```js
+import { StyleSheet, View, Text, Alert, Platform } from 'react-native';
 import { enableBioMetric,  checkBiometricSupport, checkNewFingerPrintAdded} from 'react-native-biometric';
 
-  useEffect(() => {
+export default function App() {
+
+  React.useEffect(() => {
+    console.log("use effect")
     checkNewFingerPrintAdded((res:any)=>{
       // IOS - It will give new token if any new biometrics added in settings, otherwise it will give the same token.
-      // ANDROID - It will return CONTINUE,NEW_FINGERPRINT_ADDED and BIOMETRIC_NOT_SUPPORTED messages.
       if(res==="NEW_FINGERPRINT_ADDED"){
         Alert.alert("Alert",res);
       }
@@ -51,7 +31,6 @@ import { enableBioMetric,  checkBiometricSupport, checkNewFingerPrintAdded} from
       })
       return
     }
-    //checkBiometricSupport - only for Android
     checkBiometricSupport((res:string)=>{
       if(res === "SUCCESS"){
         enableBioMetric("Bio metric ","Enter phone screen lock pattern, PIN, password or fingerprint",(res : any)=>{
@@ -62,16 +41,18 @@ import { enableBioMetric,  checkBiometricSupport, checkNewFingerPrintAdded} from
       }
     })
   }, []);
-```
 
-## Contributing
+  return (
+    <View style={styles.container}>
+      <Text>Result</Text>
+    </View>
+  );
+}
 
-See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
-
-## License
-
-MIT
-
----
-
-Made with [create-react-native-library](https://github.com/callstack/react-native-builder-bob)
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
