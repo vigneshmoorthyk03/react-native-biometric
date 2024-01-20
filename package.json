@@ -1,5 +1,5 @@
 {
-  "name": "react-native-biometric",
+  "name": "react-native-biometric-check",
   "version": "0.1.0",
   "description": "react native biometric",
   "main": "lib/commonjs/index",

@@ -1,26 +1,37 @@
-# react-native-biometric
+# react-native-biometric-check
 
-react native biometric
+This package will be usefull to authenticate the user using biometric (Finger print, Face Id, default device authentication)
 
 ## Installation
 
 ```sh
-npm install react-native-biometric
+npm install react-native-biometric-check
 ```
 
 or
 
 ```sh
-yarn add react-native-biometric
+yarn add react-native-biometric-check
 ```
 
-## Usage
-
-Android:
-    <uses-permission android:name="android.permission.USE_BIOMETRIC"/>
-IOS:
+## Permission
+```
+For IOS Add this below permission in info.plist
   <key>NSFaceIDUsageDescription</key>
   <string>We use Face ID to secure your account.</string>
+
+For Android Add this below line on AndroidManifest.xml 
+For API 28 and above:
+
+  <uses-permission android:name=" android.permission.USE_BIOMETRIC" />
+
+Before API28:
+
+  <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+  ```
+  
+## Usage
+
 
 ```js
 import { enableBioMetric,  checkBiometricSupport, checkNewFingerPrintAdded} from 'react-native-biometric';
